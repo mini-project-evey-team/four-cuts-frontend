@@ -1,1 +1,1 @@
-export * from "./header.view";
+export * from "./phtos-main.header.view";
