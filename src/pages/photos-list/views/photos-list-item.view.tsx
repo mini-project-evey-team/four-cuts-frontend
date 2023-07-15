@@ -1,40 +1,90 @@
 import { FC } from "react";
-import { PhotosListCardComponent } from "../components";
 import styled from "styled-components";
-import { ImageFrameComponent } from "../../../components";
+import { ImageContentsComponent } from "../../../components";
+import { HAPPYCAT_URL } from "../../../components/happy-cat";
+import { Link } from "react-router-dom";
 
 type IPhotosListItemViewProps = {};
 
+const data = [
+  {
+    id: "1",
+    title: "dd",
+    contents: "asd",
+    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+  },
+  {
+    id: "2",
+    title: "dd",
+    contents: "asd",
+    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+  },
+  {
+    id: "3",
+    title: "dd",
+    contents: "asd",
+    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+  },
+  {
+    id: "4",
+    title: "dd",
+    contents: "asd",
+    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+  },
+  {
+    id: "5",
+    title: "dd",
+    contents: "asd",
+    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+  },
+  {
+    id: "6",
+    title: "dd",
+    contents: "asd",
+    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+  },
+];
+
 export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
   const cards = Array(6).fill(0);
+
   return (
-    <CardGrid>
-      {cards.map((_, i) => (
-        <ImageFrameComponent title="title" width="200px" fontSize="14px">
-          <PhotosListCardComponent key={i} />
-        </ImageFrameComponent>
-      ))}
-    </CardGrid>
+    <div style={{ display: "flex", width: "100%", height: "auto" }}>
+      <div
+        style={{
+          display: "flex",
+          width: "200px",
+          height: "100%",
+        }}
+      ></div>
+      <div style={{ flex: 1, paddingTop: 20 }}>
+        <CardGrid>
+          {cards.map((_, i) => {
+            const imagesData = data[i];
+
+            return (
+              <Link to={"/list/1/detail"} key={i}>
+                <ImageContentsComponent fourPhotos={imagesData} width="200px" />
+              </Link>
+            );
+          })}
+        </CardGrid>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          width: "200px",
+          height: "100%",
+        }}
+      ></div>
+    </div>
   );
 };
 
 const CardGrid = styled.div`
   display: grid;
   gap: 20px;
-
   height: 100%;
-  padding: 20px 200px 20px 200px;
-
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-
-  @media (max-width: 1000px) {
-    grid-template-columns: 1fr; // 화면이 작을 때는 한 열에 카드 하나만
-  }
-
-  @media (min-width: 1200px) {
-    grid-template-columns: repeat(
-      3,
-      1fr
-    ); // 화면이 클 때는 한 열에 최대 세 카드
-  }
+  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr);
 `;

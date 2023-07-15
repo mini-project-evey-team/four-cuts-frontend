@@ -1,33 +1,49 @@
 import { FC } from "react";
-import { ImageFrameComponent } from "../../../components";
+import { ImageContentsComponent } from "../../../components";
 import { HAPPYCAT_URL } from "../../../components/happy-cat";
-import styled from "styled-components";
 
 type IPhotosPostAddPhotoViewProps = {};
 
-export const PhotosPostAddPhotoView: FC<IPhotosPostAddPhotoViewProps> = () => {
-  const fourPhotos = Array(4).fill(HAPPYCAT_URL);
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <ImageFrameComponent title="ss" width="400px" fontSize="20px">
-        {fourPhotos.map((e, i) => (
-          <StyledImage src={e} key={i} />
-        ))}
-      </ImageFrameComponent>
-    </div>
-  );
+export const PhotosPostAddPhotoView: FC<
+  IPhotosPostAddPhotoViewProps
+> = ({}) => {
+  const data = [
+    {
+      id: "1",
+      title: "dd",
+      contents: "asd",
+      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+    },
+    {
+      id: "2",
+      title: "dd",
+      contents: "asd",
+      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+    },
+    {
+      id: "3",
+      title: "dd",
+      contents: "asd",
+      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+    },
+    {
+      id: "4",
+      title: "dd",
+      contents: "asd",
+      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+    },
+    {
+      id: "5",
+      title: "dd",
+      contents: "asd",
+      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+    },
+    {
+      id: "6",
+      title: "dd",
+      contents: "asd",
+      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
+    },
+  ];
+  return <ImageContentsComponent fourPhotos={data[0]} width="400px" />;
 };
-
-const StyledImage = styled.img`
-  width: 50%;
-  height: 50%;
-  objectfit: cover;
-`;

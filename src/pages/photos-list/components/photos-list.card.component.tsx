@@ -1,20 +1,25 @@
 import { FC } from "react";
 import { styled } from "styled-components";
 import { HAPPYCAT_URL } from "../../../components/happy-cat";
+import { ImageFrameComponent } from "../../../components";
 
 type IPhotosListCardComponentProps = {
-  imageUrl?: string;
-  title?: string;
+  imageData: {
+    imageUrl: string;
+    title: string;
+  }[];
 };
 
 export const PhotosListCardComponent: FC<IPhotosListCardComponentProps> = ({
-  imageUrl,
+  imageData,
 }) => {
   return (
-    <CardWrapper>
-      <ImageCardWrapper>
-        <ImageBoxRow>
-          <EachImageBox right={true} bottom={true}>
+    <ImageFrameComponent title="title" width="200px" fontSize="14px">
+      <CardWrapper>
+        <ImageCardWrapper>
+          <ImageBoxRow>
+            {/* {imageData.map((e, i) => {})} */}
+            {/* <EachImageBox right={true} bottom={true}>
             <Image src={imageUrl || HAPPYCAT_URL} alt="placeholder" />
           </EachImageBox>
           <EachImageBox bottom={true}>
@@ -27,10 +32,11 @@ export const PhotosListCardComponent: FC<IPhotosListCardComponentProps> = ({
           </EachImageBox>
           <EachImageBox>
             <Image src={imageUrl || HAPPYCAT_URL} alt="placeholder" />
-          </EachImageBox>
-        </ImageBoxRow>
-      </ImageCardWrapper>
-    </CardWrapper>
+          </EachImageBox> */}
+          </ImageBoxRow>
+        </ImageCardWrapper>
+      </CardWrapper>
+    </ImageFrameComponent>
   );
 };
 
