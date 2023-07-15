@@ -25,9 +25,8 @@ export const PhotosListHeaderView: FC<IPhotosListHeaderViewProps> = ({}) => {
 const HeaderWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 90px;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 200px 0px 200px;
+  padding: 20px 200px 20px 200px;
   background-color: #ffe1e7;
 `;
