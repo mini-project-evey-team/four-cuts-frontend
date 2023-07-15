@@ -39,28 +39,9 @@ const Frame = styled.div<{ width: string }>`
 const ImageContainer = styled.div`
   width: 100%;
   aspect-ratio: 155 / 190;
-  backgroundColor: "red",
   display: flex;
-  flexWrap: wrap;
-  flexDirection: row;
+  flex-wrap: wrap;
   position: relative;
-  overflow: hidden;
-  :before,
-  :after {
-    content: "";
-    position: absolute;
-    background: white;
-  }
-  :before {
-    width: 1px;
-    height: 100%;
-    left: 50%;
-  }
-  :after {
-    width: 100%;
-    height: 1px;
-    top: 50%;
-  }
 `;
 
 const Bottom = styled.div<{ width: string; fontSize: string }>`
