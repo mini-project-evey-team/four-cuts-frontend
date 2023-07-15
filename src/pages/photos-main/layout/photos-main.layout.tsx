@@ -4,5 +4,5 @@ type IPhotosMainLayoutProps = {
 };
 
 export const PhotosMainLayout: FC<IPhotosMainLayoutProps> = ({ children }) => {
-  return <>{children}</>;
+  return <div>{children}</div>;
 };

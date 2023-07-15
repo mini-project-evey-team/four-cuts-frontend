@@ -21,6 +21,6 @@ const HeaderWrapper = styled.div`
   width: 100%;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px 200px 20px 200px;
+  padding: 20px 80px 20px 80px;
   background-color: #ffe1e7;
 `;

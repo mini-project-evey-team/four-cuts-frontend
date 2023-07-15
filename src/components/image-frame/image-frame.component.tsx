@@ -4,14 +4,14 @@ type IImageFrameComponentProps = {
   children: ReactNode;
   title: string;
   width: string;
-  fontSize: string;
+  fontSize?: string;
 };
 
 export const ImageFrameComponent: FC<IImageFrameComponentProps> = ({
   children,
   title,
   width,
-  fontSize,
+  fontSize = "20px",
 }) => {
   return (
     <Wrapper>
