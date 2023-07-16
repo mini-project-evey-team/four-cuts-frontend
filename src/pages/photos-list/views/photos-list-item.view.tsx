@@ -1,82 +1,61 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import styled from "styled-components";
-import { ImageContentsComponent } from "../../../components";
-import { HAPPYCAT_URL } from "../../../components/happy-cat";
+import {
+  ArrowButtonComponent,
+  ImageContentsComponent,
+} from "../../../components";
 import { Link } from "react-router-dom";
+import { useFetch } from "../container/hooks";
 
 type IPhotosListItemViewProps = {};
 
-const data = [
-  {
-    id: "1",
-    title: "dd",
-    contents: "asd",
-    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-  },
-  {
-    id: "2",
-    title: "dd",
-    contents: "asd",
-    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-  },
-  {
-    id: "3",
-    title: "dd",
-    contents: "asd",
-    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-  },
-  {
-    id: "4",
-    title: "dd",
-    contents: "asd",
-    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-  },
-  {
-    id: "5",
-    title: "dd",
-    contents: "asd",
-    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-  },
-  {
-    id: "6",
-    title: "dd",
-    contents: "asd",
-    imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-  },
-];
-
 export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
+  const { currentPageData, goPreviousPage, goNextPage, pageIndex } = useFetch();
+
   const cards = Array(6).fill(0);
 
   return (
-    <div style={{ display: "flex", width: "100%", height: "auto" }}>
+    <div style={{ display: "flex", flex: 1 }}>
       <div
         style={{
           display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           width: "200px",
           height: "100%",
         }}
-      ></div>
+      >
+        <ArrowButtonComponent direction="left" onButtonClick={goPreviousPage} />
+      </div>
       <div style={{ flex: 1, paddingTop: 20 }}>
         <CardGrid>
           {cards.map((_, i) => {
-            const imagesData = data[i];
+            const sixPhotosArray = currentPageData.items;
+            const fourPhotosArray = sixPhotosArray[i];
 
             return (
-              <Link to={"/list/1/detail"} key={i}>
-                <ImageContentsComponent fourPhotos={imagesData} width="200px" />
+              <Link to={`/list/${sixPhotosArray[i].id}/detail`} key={i}>
+                <ImageContentsComponent
+                  fourPhotos={fourPhotosArray}
+                  width="200px"
+                />
               </Link>
             );
           })}
         </CardGrid>
+        <div>{pageIndex}</div>
       </div>
       <div
         style={{
           display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           width: "200px",
           height: "100%",
         }}
-      ></div>
+      >
+        <ArrowButtonComponent direction="right" onButtonClick={goNextPage} />
+      </div>
     </div>
   );
 };

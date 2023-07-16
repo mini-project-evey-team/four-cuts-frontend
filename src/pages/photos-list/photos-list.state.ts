@@ -17,15 +17,17 @@ export interface Page {
   items: PageItem[];
 }
 
-export type FetchDataResponse = Page[];
+export type FetchDataResponse = Page;
 
 export const $fetchData = selector<FetchDataResponse>({
   key: "fetchData",
   get: async ({ get }) => {
     const currentPage = get($pageIndex);
     const response = await fetch("/data.json");
+
     const data = await response.json();
-    const currentPageData = await data[currentPage - 1].items;
+
+    const currentPageData = data.data[currentPage - 1] as Page;
 
     return currentPageData;
   },

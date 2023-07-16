@@ -1,6 +1,5 @@
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import { PhotosListHeaderView, PhotosListItemView } from "../views";
-import styled from "styled-components";
 import { Layout } from "../../../styles";
 
 type IPhotosListContainerProps = {};
@@ -9,7 +8,9 @@ export const PhotosListContainer: FC<IPhotosListContainerProps> = ({}) => {
   return (
     <Layout>
       <PhotosListHeaderView />
-      <PhotosListItemView />
+      <Suspense fallback={<div>Loading</div>}>
+        <PhotosListItemView />
+      </Suspense>
     </Layout>
   );
 };
