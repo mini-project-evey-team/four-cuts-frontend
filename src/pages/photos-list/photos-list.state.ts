@@ -12,23 +12,30 @@ export interface PageItem {
   imageUrl: string[];
 }
 
-export interface Page {
+export interface FetchDataResponse {
   page: number;
   items: PageItem[];
 }
+export interface Page extends FetchDataResponse {
+  isLastPage: boolean;
+}
 
-export type FetchDataResponse = Page;
-
-export const $fetchData = selector<FetchDataResponse>({
+export const $fetchData = selector<Page>({
   key: "fetchData",
   get: async ({ get }) => {
     const currentPage = get($pageIndex);
     const response = await fetch("/data.json");
 
     const data = await response.json();
+    const lastPage = data.data.length;
 
-    const currentPageData = data.data[currentPage - 1] as Page;
+    const currentPageData = data.data[currentPage - 1] as FetchDataResponse;
 
-    return currentPageData;
+    const pageData = {
+      ...currentPageData,
+      isLastPage: currentPage === lastPage,
+    };
+
+    return pageData;
   },
 });

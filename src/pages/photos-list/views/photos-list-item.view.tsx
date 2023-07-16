@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 import {
   ArrowButtonComponent,
@@ -14,8 +14,11 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
 
   const cards = Array(6).fill(0);
 
+  const isLastPage = currentPageData.isLastPage;
+  const isFirstPage = pageIndex === 1;
+
   return (
-    <div style={{ display: "flex", flex: 1 }}>
+    <div style={{ display: "flex", flex: 1, alignItems: "center" }}>
       <div
         style={{
           display: "flex",
@@ -25,25 +28,35 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
           height: "100%",
         }}
       >
-        <ArrowButtonComponent direction="left" onButtonClick={goPreviousPage} />
+        {!isFirstPage && (
+          <ArrowButtonComponent
+            direction="left"
+            onButtonClick={goPreviousPage}
+          />
+        )}
       </div>
-      <div style={{ flex: 1, paddingTop: 20 }}>
+      <div style={{ flex: 1 }}>
         <CardGrid>
           {cards.map((_, i) => {
             const sixPhotosArray = currentPageData.items;
-            const fourPhotosArray = sixPhotosArray[i];
 
-            return (
-              <Link to={`/list/${sixPhotosArray[i].id}/detail`} key={i}>
-                <ImageContentsComponent
-                  fourPhotos={fourPhotosArray}
-                  width="200px"
-                />
-              </Link>
-            );
+            if (sixPhotosArray?.[i]) {
+              const fourPhotosArray = sixPhotosArray[i];
+              return (
+                <Link
+                  to={`/list/${sixPhotosArray[i].id}/detail`}
+                  key={i}
+                  style={{ textDecoration: "none" }}
+                >
+                  <ImageContentsComponent
+                    fourPhotos={fourPhotosArray}
+                    width="200px"
+                  />
+                </Link>
+              );
+            }
           })}
         </CardGrid>
-        <div>{pageIndex}</div>
       </div>
       <div
         style={{
@@ -54,7 +67,9 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
           height: "100%",
         }}
       >
-        <ArrowButtonComponent direction="right" onButtonClick={goNextPage} />
+        {!isLastPage && (
+          <ArrowButtonComponent direction="right" onButtonClick={goNextPage} />
+        )}
       </div>
     </div>
   );
@@ -62,7 +77,7 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
 
 const CardGrid = styled.div`
   display: grid;
-  gap: 20px;
+  gap: 60px;
   height: 100%;
   flex-wrap: wrap;
   grid-template-columns: repeat(3, 1fr);
