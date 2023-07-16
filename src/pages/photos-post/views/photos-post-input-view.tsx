@@ -1,23 +1,95 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
-import { useNavigate } from "react-router";
+import {
+  useForm,
+  SubmitHandler,
+  useFormContext,
+  Controller,
+} from "react-hook-form";
+
 import styled from "styled-components";
 
-type FormInputs = {
-  title: string;
-  content: string;
-  image_url: FileList;
+import { IPhotosPostFormData, usePhotosPostSubmit } from "../container";
+
+export const PhotosPostInputView = () => {
+  const { control } = useFormContext<IPhotosPostFormData>();
+
+  const { submit } = usePhotosPostSubmit();
+
+  return (
+    <Container>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Controller
+          control={control}
+          name="title"
+          render={({ field: { value, onChange } }) => {
+            return (
+              <Input
+                type="text"
+                value={value}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  onChange(e);
+                }}
+              />
+            );
+          }}
+        />
+        <Controller
+          control={control}
+          name="contents"
+          render={({ field: { value, onChange } }) => {
+            return (
+              <TextArea
+                value={value}
+                placeholder="Content"
+                style={{ height: "400px" }}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                  onChange(e);
+                }}
+              />
+            );
+          }}
+        />
+      </div>
+      <Controller
+        control={control}
+        name="imageUrls"
+        render={({ field: { value, onChange } }) => {
+          const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const file = e.target.files;
+
+            if (file) {
+              const tempImages: (string | ArrayBuffer | null)[] = [];
+              for (let i = 0; i < file.length; i++) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                  tempImages.push(reader.result);
+                  if (tempImages.length === file.length) {
+                    onChange(tempImages.map((image) => image!.toString()));
+                  }
+                };
+                reader.readAsDataURL(file[i]);
+              }
+            }
+          };
+          return <Input type="file" multiple onChange={handleFileUpload} />;
+        }}
+      />
+      <Button type="submit" value="Upload" onSubmit={submit} />
+    </Container>
+  );
 };
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
   flex: 1;
-  max-width: 28rem;
-  padding: 1rem;
   background-color: white;
   border-radius: 0.375rem;
-  margin: 2.5rem auto;
 `;
 
 const Input = styled.input`
@@ -59,92 +131,3 @@ const TextArea = styled.textarea`
   border-radius: 0.375rem;
   color: black;
 `;
-
-export const PhotosPostInputView = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<FormInputs>({ mode: "onChange" });
-
-  const [selectedImage, setSelectedImage] = useState<
-    string | ArrayBuffer | null
-  >(null);
-
-  const watchedImage = watch("image_url");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (watchedImage?.length > 0) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-      };
-      reader.readAsDataURL(watchedImage[0]);
-    }
-  }, [watchedImage]);
-
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("content", data.content);
-    formData.append("image_url", data.image_url[0]);
-
-    axios({
-      baseURL: "/",
-      url: "/api/images",
-      method: "POST",
-      data: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        alert("upload 완료!");
-        navigate(`/`, {});
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  return (
-    <Container>
-      <form onSubmit={() => {}}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Input
-            type="text"
-            {...register("title", {
-              minLength: { value: 2, message: "Must be at least 2 characters" },
-              maxLength: { value: 6, message: "Cannot exceed 6 characters" },
-            })}
-          />
-          {errors.title && <ErrorText>{errors.title.message}</ErrorText>}
-
-          <TextArea
-            placeholder="Content"
-            style={{ height: "400px" }}
-            {...register("content", { required: "Content is required" })}
-          />
-          {errors.content && <ErrorText>{errors.content.message}</ErrorText>}
-        </div>
-
-        <Input
-          type="file"
-          {...register("image_url", { required: "Image is required" })}
-        />
-        {errors.image_url && <ErrorText>{errors.image_url.message}</ErrorText>}
-        {/* {selectedImage && (
-          <ImagePreview src={selectedImage.toString()} alt="preview" />
-        )} */}
-        <Button type="submit" value="Upload" />
-      </form>
-    </Container>
-  );
-};
