@@ -15,7 +15,7 @@ export const ImageContentsComponent: FC<IImageContentsComponentProps> = ({
   fourPhotos,
   width,
 }) => {
-  const { id, title, contents, imageUrl } = fourPhotos;
+  const { title, imageUrl } = fourPhotos;
   return (
     <div
       style={{
