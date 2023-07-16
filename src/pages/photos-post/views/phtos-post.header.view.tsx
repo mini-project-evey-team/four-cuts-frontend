@@ -2,9 +2,9 @@ import { FC } from "react";
 import { Button } from "../../../components";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-type IPhtosPostHeaderViewProps = {};
+type IPhotosPostHeaderViewProps = {};
 
-export const PhtosPostHeaderView: FC<IPhtosPostHeaderViewProps> = ({}) => {
+export const PhotosPostHeaderView: FC<IPhotosPostHeaderViewProps> = ({}) => {
   return (
     <HeaderWrapper>
       <Link to="/">

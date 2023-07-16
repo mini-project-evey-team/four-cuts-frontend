@@ -2,7 +2,7 @@ import { FC } from "react";
 import {
   PhotosPostAddPhotoView,
   PhotosPostInputView,
-  PhtosPostHeaderView,
+  PhotosPostHeaderView,
 } from "../views";
 import { Layout } from "../../../styles";
 type IPhotosPostContainerProps = {};
@@ -10,7 +10,7 @@ type IPhotosPostContainerProps = {};
 export const PhotosPostContainer: FC<IPhotosPostContainerProps> = ({}) => {
   return (
     <Layout>
-      <PhtosPostHeaderView />
+      <PhotosPostHeaderView />
       <div
         style={{
           display: "flex",
