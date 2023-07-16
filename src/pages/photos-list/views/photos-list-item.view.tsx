@@ -6,6 +6,7 @@ import {
 } from "../../../components";
 import { Link } from "react-router-dom";
 import { useFetch } from "../container/hooks";
+import Title from "antd/es/skeleton/Title";
 
 type IPhotosListItemViewProps = {};
 
@@ -42,6 +43,9 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
 
             if (sixPhotosArray?.[i]) {
               const fourPhotosArray = sixPhotosArray[i];
+              const imageUrlsArray = fourPhotosArray.imageUrl;
+              const title = fourPhotosArray.title;
+
               return (
                 <Link
                   to={`/list/${sixPhotosArray[i].id}/detail`}
@@ -49,7 +53,8 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
                   style={{ textDecoration: "none" }}
                 >
                   <ImageContentsComponent
-                    fourPhotos={fourPhotosArray}
+                    imageUrls={imageUrlsArray}
+                    title={title}
                     width="200px"
                   />
                 </Link>

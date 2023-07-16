@@ -3,25 +3,21 @@ import { ImageFrameComponent } from "../image-frame";
 import styled from "styled-components";
 
 type IImageContentsComponentProps = {
-  fourPhotos: {
-    id: string;
-    title: string;
-    contents: string;
-    imageUrl: string[];
-  };
+  imageUrls: string[];
+  title: string;
   width: string;
 };
 
 export const ImageContentsComponent: FC<IImageContentsComponentProps> = ({
-  fourPhotos,
+  imageUrls,
+  title,
   width,
 }) => {
-  const { title, imageUrl } = fourPhotos;
   return (
     <StyledOuterDiv>
       <StyledInnerDiv>
         <ImageFrameComponent title={title} width={width} fontSize="20px">
-          {imageUrl.map((e, i) => {
+          {imageUrls.map((e, i) => {
             return <StyledImage src={e} key={i} />;
           })}
         </ImageFrameComponent>
