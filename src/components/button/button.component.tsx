@@ -21,7 +21,11 @@ export const Button: FC<IButtonProps> = ({
   );
 };
 
-const StyledButton = styled.button<{ attribute: string; size: string }>`
+const StyledButton = styled.button<{
+  attribute: string;
+  size: string;
+  flex?: boolean;
+}>`
   cursor: pointer;
   border-radius: 20px;
   padding: 10px;

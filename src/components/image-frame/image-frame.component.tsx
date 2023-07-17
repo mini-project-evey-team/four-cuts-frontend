@@ -53,4 +53,5 @@ const Bottom = styled.div<{ width: string; fontSize: string }>`
   background-color: black;
   color: white;
   font-size: ${(props) => props.fontSize};
+  height: 40px;
 `;

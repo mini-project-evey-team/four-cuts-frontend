@@ -3,9 +3,5 @@ import { PhotosPostContainer } from "./container";
 type IPhotosPostPageProps = {};
 
 export const PhotosPostPage: FC<IPhotosPostPageProps> = ({}) => {
-  return (
-    <>
-      <PhotosPostContainer />
-    </>
-  );
+  return <PhotosPostContainer />;
 };

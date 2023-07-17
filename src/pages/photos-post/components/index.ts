@@ -1,1 +1,1 @@
-export * from "./photos-post-input.component";
+export * from "./photos-post-image-input";

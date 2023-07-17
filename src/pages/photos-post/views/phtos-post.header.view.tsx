@@ -8,7 +8,7 @@ export const PhotosPostHeaderView: FC<IPhotosPostHeaderViewProps> = ({}) => {
   return (
     <HeaderWrapper>
       <Link to="/">
-        <Button attribute="filled" size="medium">
+        <Button attribute="empty" size="medium">
           HOME
         </Button>
       </Link>
