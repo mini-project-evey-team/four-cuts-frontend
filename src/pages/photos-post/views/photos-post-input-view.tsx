@@ -1,28 +1,22 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
-import {
-  useForm,
-  SubmitHandler,
-  useFormContext,
-  Controller,
-  useController,
-} from "react-hook-form";
+import React from "react";
+import { useFormContext, Controller, useController } from "react-hook-form";
 
 import styled from "styled-components";
 
-import { IPhotosPostFormData, usePhotosPostSubmit } from "../container";
+import { IPhotosPostFormData } from "../container";
 import imageCompression from "browser-image-compression";
 
 export const PhotosPostInputView = () => {
   const { control, watch } = useFormContext<IPhotosPostFormData>();
 
   const {
-    field: { value, onChange: onChangeImageFiles },
+    field: { onChange: onChangeImageFiles },
   } = useController({
     control: control,
     name: "imageFiles",
   });
 
-  const { submit } = usePhotosPostSubmit();
+  // const { submit } = usePhotosPostSubmit();
 
   console.log(watch());
 
@@ -72,7 +66,7 @@ export const PhotosPostInputView = () => {
       <Controller
         control={control}
         name="imageUrls"
-        render={({ field: { value, onChange } }) => {
+        render={({ field: { onChange } }) => {
           const handleFileUpload = async (
             e: React.ChangeEvent<HTMLInputElement>
           ) => {
@@ -108,7 +102,7 @@ export const PhotosPostInputView = () => {
           return <Input type="file" multiple onChange={handleFileUpload} />;
         }}
       />
-      <Button type="submit" value="Upload" onSubmit={submit} />
+      {/* <Button type="submit" value="Upload" onSubmit={submit} /> */}
     </Container>
   );
 };
@@ -129,29 +123,29 @@ const Input = styled.input`
   color: black;
 `;
 
-const ErrorText = styled.p`
-  color: #e53e3e;
-`;
+// const ErrorText = styled.p`
+//   color: #e53e3e;
+// `;
 
-const ImagePreview = styled.img`
-  height: 20rem;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 0.375rem;
-  margin-top: 0.75rem;
-`;
+// const ImagePreview = styled.img`
+//   height: 20rem;
+//   width: 100%;
+//   object-fit: cover;
+//   border-radius: 0.375rem;
+//   margin-top: 0.75rem;
+// `;
 
-const Button = styled.input`
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  color: white;
-  background-color: #4299e1;
-  &:hover {
-    background-color: #4299e1;
-  }
-`;
+// const Button = styled.input`
+//   padding: 0.5rem;
+//   margin: 0.5rem 0;
+//   border-radius: 0.375rem;
+//   cursor: pointer;
+//   color: white;
+//   background-color: #4299e1;
+//   &:hover {
+//     background-color: #4299e1;
+//   }
+// `;
 
 const TextArea = styled.textarea`
   border: 2px solid #cbd5e0;

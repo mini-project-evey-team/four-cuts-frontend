@@ -1,10 +1,7 @@
 import { FC } from "react";
-import {
-  ImageContentsComponent,
-  ImageFrameComponent,
-} from "../../../components";
+import { ImageFrameComponent } from "../../../components";
 import { Controller, useController, useFormContext } from "react-hook-form";
-import { IPhotosPostFormData, usePhotosPostSubmit } from "../container";
+import { IPhotosPostFormData } from "../container";
 import imageCompression from "browser-image-compression";
 import styled from "styled-components";
 

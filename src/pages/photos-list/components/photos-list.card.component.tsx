@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { styled } from "styled-components";
-import { HAPPYCAT_URL } from "../../../components/happy-cat";
 import { ImageFrameComponent } from "../../../components";
 
 type IPhotosListCardComponentProps = {
@@ -10,9 +9,9 @@ type IPhotosListCardComponentProps = {
   }[];
 };
 
-export const PhotosListCardComponent: FC<IPhotosListCardComponentProps> = ({
-  imageData,
-}) => {
+export const PhotosListCardComponent: FC<
+  IPhotosListCardComponentProps
+> = ({}) => {
   return (
     <ImageFrameComponent title="title" width="200px" fontSize="14px">
       <CardWrapper>
@@ -57,20 +56,20 @@ const ImageBoxRow = styled.div`
   display: flex;
 `;
 
-const EachImageBox = styled.div<{ right?: boolean; bottom?: boolean }>`
-  display: inline-flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  // border-right: ${(props) => (props.right ? "2px solid black" : "none")};
-  // border-bottom: ${(props) => (props.bottom ? "2px solid black" : "none")};
-`;
+// const EachImageBox = styled.div<{ right?: boolean; bottom?: boolean }>`
+//   display: inline-flex;
+//   width: 100%;
+//   height: 100%;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   cursor: pointer;
+//   // border-right: ${(props) => (props.right ? "2px solid black" : "none")};
+//   // border-bottom: ${(props) => (props.bottom ? "2px solid black" : "none")};
+// `;
 
-const Image = styled.img`
-  width: 100%;
-  aspect-ratio: 155/190;
-  object-fit: cover;
-`;
+// const Image = styled.img`
+//   width: 100%;
+//   aspect-ratio: 155/190;
+//   object-fit: cover;
+// `;

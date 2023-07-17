@@ -43,5 +43,11 @@ export const PhotosDetailImageView: FC<IPhotosDetailImageViewProps> = ({}) => {
       imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
     },
   ];
-  return <ImageContentsComponent fourPhotos={data[0]} width="400px" />;
+  return (
+    <ImageContentsComponent
+      imageUrls={data[0].imageUrl}
+      title=""
+      width="400px"
+    />
+  );
 };
