@@ -6,7 +6,6 @@ import {
 } from "../../../components";
 import { Link } from "react-router-dom";
 import { useFetch } from "../container/hooks";
-import Title from "antd/es/skeleton/Title";
 
 type IPhotosListItemViewProps = {};
 
