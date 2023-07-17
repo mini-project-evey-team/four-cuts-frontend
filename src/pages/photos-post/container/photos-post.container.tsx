@@ -10,9 +10,11 @@ import { usePostForm } from "./hooks";
 type IPhotosPostContainerProps = {};
 
 export const PhotosPostContainer: FC<IPhotosPostContainerProps> = ({}) => {
-  const { methods } = usePostForm();
+  const { form } = usePostForm();
   return (
-    <FormProvider {...methods}>
+    //form provider를 감싸줘서, provider아래의 어떤 컴포넌트에서도 react-hook-form이
+    // 제공하는 다양한 훅을 통해서 form데이터에 접근할 수 있게함.
+    <FormProvider {...form}>
       <Layout>
         <PhotosPostHeaderView />
         <div

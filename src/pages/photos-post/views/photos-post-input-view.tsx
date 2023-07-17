@@ -4,16 +4,27 @@ import {
   SubmitHandler,
   useFormContext,
   Controller,
+  useController,
 } from "react-hook-form";
 
 import styled from "styled-components";
 
 import { IPhotosPostFormData, usePhotosPostSubmit } from "../container";
+import imageCompression from "browser-image-compression";
 
 export const PhotosPostInputView = () => {
-  const { control } = useFormContext<IPhotosPostFormData>();
+  const { control, watch } = useFormContext<IPhotosPostFormData>();
+
+  const {
+    field: { value, onChange: onChangeImageFiles },
+  } = useController({
+    control: control,
+    name: "imageFiles",
+  });
 
   const { submit } = usePhotosPostSubmit();
+
+  console.log(watch());
 
   return (
     <Container>
@@ -32,6 +43,9 @@ export const PhotosPostInputView = () => {
                 type="text"
                 value={value}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (e.target.value.trim().length > 11) {
+                    return;
+                  }
                   onChange(e);
                 }}
               />
@@ -59,21 +73,36 @@ export const PhotosPostInputView = () => {
         control={control}
         name="imageUrls"
         render={({ field: { value, onChange } }) => {
-          const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-            const file = e.target.files;
+          const handleFileUpload = async (
+            e: React.ChangeEvent<HTMLInputElement>
+          ) => {
+            const files = e.target.files;
 
-            if (file) {
+            const compressedFiles: File[] = [];
+
+            if (files) {
               const tempImages: (string | ArrayBuffer | null)[] = [];
-              for (let i = 0; i < file.length; i++) {
+
+              // for frontend ui
+              for (let i = 0; i < files.length; i++) {
                 const reader = new FileReader();
                 reader.onloadend = () => {
                   tempImages.push(reader.result);
-                  if (tempImages.length === file.length) {
+                  if (tempImages.length === files.length) {
                     onChange(tempImages.map((image) => image!.toString()));
                   }
                 };
-                reader.readAsDataURL(file[i]);
+                reader.readAsDataURL(files[i]);
               }
+
+              // for store files for backend
+              for (let i = 0; i < files.length; i++) {
+                const compressedFile = await imageCompression(files[i], {
+                  maxSizeMB: 0.5,
+                });
+                compressedFiles.push(compressedFile);
+              }
+              onChangeImageFiles(compressedFiles);
             }
           };
           return <Input type="file" multiple onChange={handleFileUpload} />;
