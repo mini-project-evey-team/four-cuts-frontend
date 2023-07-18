@@ -1,6 +1,5 @@
-import { useFormContext } from "react-hook-form";
 import styled from "styled-components";
-import { IPhotosPostFormData, usePhotosPostSubmit } from "../container";
+import { usePhotosPostSubmit } from "../container";
 import {
   PhotosPostInputController,
   PhotosPostContentsController,
@@ -10,11 +9,10 @@ import {
 import { Button } from "../../../components";
 
 export const PhotosPostInputView = () => {
-  const { watch } = useFormContext<IPhotosPostFormData>();
+  // const { watch } = useFormContext<IPhotosPostFormData>();
+  // console.log(watch());
 
   const { submit } = usePhotosPostSubmit();
-
-  // console.log(watch());
 
   return (
     <Container>

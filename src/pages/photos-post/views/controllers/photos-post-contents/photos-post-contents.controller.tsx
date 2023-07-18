@@ -8,21 +8,39 @@ type IPhotosPostContentsControllerProps = {};
 export const PhotosPostContentsController: FC<
   IPhotosPostContentsControllerProps
 > = ({}) => {
-  const { control } = useFormContext<IPhotosPostFormData>();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<IPhotosPostFormData>();
 
   return (
     <Controller
       control={control}
       name={"content"}
+      rules={{
+        required: "Content is required",
+        validate: (value) =>
+          value.trim().length < 500 ||
+          "Content should not exceed 500 characters",
+      }}
       render={({ field: { value, onChange } }) => {
         return (
-          <TextArea
-            value={value}
-            placeholder="Content"
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-              onChange(e);
-            }}
-          />
+          <>
+            <TextArea
+              value={value}
+              placeholder="Content"
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                if (e.target.value.trim().length > 500) {
+                  return;
+                }
+                onChange(e);
+              }}
+            />
+
+            {errors.content && (
+              <ErrorMessage>{errors.content.message}</ErrorMessage>
+            )}
+          </>
         );
       }}
     />
@@ -36,4 +54,9 @@ const TextArea = styled.textarea`
   border-radius: 0.375rem;
   color: black;
   height: 400px;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
 `;
