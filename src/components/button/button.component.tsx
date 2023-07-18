@@ -58,8 +58,8 @@ const StyledButton = styled.button<{
     switch (props.size) {
       case "large":
         return css`
-          width: 310px;
-          height: 73px;
+          width: 300px;
+          height: 48px;
           font-weight: 600;
         `;
       case "medium":

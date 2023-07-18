@@ -60,7 +60,7 @@ export const PhotosPostAllPhotosController: FC<
         return (
           <ContainerDiv>
             <InnerDiv>
-              <Button size="medium" attribute="filled">
+              <Button size="small" attribute="empty">
                 Select All
                 <StyledInput type="file" multiple onChange={handleFileUpload} />
               </Button>
@@ -77,7 +77,7 @@ const ContainerDiv = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 
 const InnerDiv = styled.div`

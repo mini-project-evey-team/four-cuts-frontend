@@ -1,6 +1,6 @@
 export type IPhotosPostFormData = {
   title: string;
-  contents: string;
+  content: string;
   imageUrls: string[];
   imageFiles: File[];
 };

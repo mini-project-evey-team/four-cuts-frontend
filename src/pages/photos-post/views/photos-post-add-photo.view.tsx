@@ -1,21 +1,21 @@
 import { FC } from "react";
 import { ImageFrameComponent } from "../../../components";
-import {
-  PhotosPostResetController,
-  PhotosPostAllPhotosController,
-} from "./controllers";
 import { PhotosPostImageInputComponent } from "../components";
 import styled from "styled-components";
+import { useFormContext } from "react-hook-form";
+import { IPhotosPostFormData } from "../container";
 
 type IPhotosPostAddPhotoViewProps = {};
 
 export const PhotosPostAddPhotoView: FC<
   IPhotosPostAddPhotoViewProps
 > = ({}) => {
+  const { watch } = useFormContext<IPhotosPostFormData>();
+
   return (
     <MainDiv>
       <FirstInnerDiv>
-        <ImageFrameComponent title="title" width="440px">
+        <ImageFrameComponent title={watch("title")} width="440px">
           <GridDiv>
             <PhotosPostImageInputComponent index={0} />
             <PhotosPostImageInputComponent index={1} />

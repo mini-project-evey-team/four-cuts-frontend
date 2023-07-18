@@ -13,7 +13,7 @@ export const PhotosPostContentsController: FC<
   return (
     <Controller
       control={control}
-      name={"contents"}
+      name={"content"}
       render={({ field: { value, onChange } }) => {
         return (
           <TextArea

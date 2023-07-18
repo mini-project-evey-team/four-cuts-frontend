@@ -30,7 +30,7 @@ export const PhotosPostResetController: FC<
   };
 
   return (
-    <Button size="medium" attribute="filled" onClick={handlePressButton}>
+    <Button size="small" attribute="empty" onClick={handlePressButton}>
       Reset
     </Button>
   );

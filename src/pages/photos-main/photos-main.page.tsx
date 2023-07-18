@@ -7,8 +7,7 @@ type IPhotosMainPageProps = {};
 export const PhotosMainPage: FC<IPhotosMainPageProps> = ({}) => {
   useEffect(() => {
     const instance = axios.create({
-      baseURL:
-        "http://ec2-3-35-216-160.ap-northeast-2.compute.amazonaws.com:8080",
+      baseURL: "https://four-cut.store:8080/",
       headers: {},
     });
 

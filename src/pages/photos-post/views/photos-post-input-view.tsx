@@ -14,7 +14,7 @@ export const PhotosPostInputView = () => {
 
   const { submit } = usePhotosPostSubmit();
 
-  console.log(watch());
+  // console.log(watch());
 
   return (
     <Container>
@@ -28,24 +28,22 @@ export const PhotosPostInputView = () => {
       >
         <PhotosPostInputController />
         <PhotosPostContentsController />
-        <SecondInnerDiv>
-          <ResetControllerDiv>
+        <ButtonWrapperDiv>
+          <FlexOneDiv>
             <PhotosPostResetController />
-          </ResetControllerDiv>
-          <PhotosPostAllPhotosController />
-        </SecondInnerDiv>
-        <SecondInnerDiv>
-          <ResetControllerDiv>
-            <Button size="medium" attribute="empty" onClick={submit}>
+          </FlexOneDiv>
+          <FlexOneDiv>
+            <PhotosPostAllPhotosController />
+          </FlexOneDiv>
+        </ButtonWrapperDiv>
+        <ButtonWrapperDiv>
+          <FlexOneDiv>
+            <Button size="large" attribute="filled" onClick={submit}>
               Submit
             </Button>
-          </ResetControllerDiv>
-          <Button size="medium" attribute="empty">
-            Cancel
-          </Button>
-        </SecondInnerDiv>
+          </FlexOneDiv>
+        </ButtonWrapperDiv>
       </div>
-      {/* <button type="submit" value="Upload" onSubmit={submit} /> */}
     </Container>
   );
 };
@@ -60,18 +58,19 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const SecondInnerDiv = styled.div`
+const ButtonWrapperDiv = styled.div`
   display: flex;
   width: 400px;
   flex: 1;
   justify-content: space-between;
   align-items: center;
-  padding-top: 8px;
+  padding-top: 10px;
   padding-right: 20px;
   padding-left: 20px;
 `;
 
-const ResetControllerDiv = styled.div`
+const FlexOneDiv = styled.div`
   display: flex;
+  justify-content: center;
   flex: 1;
 `;
