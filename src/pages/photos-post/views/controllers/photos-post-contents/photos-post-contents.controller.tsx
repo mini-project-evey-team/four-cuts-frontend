@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-
 import styled from "styled-components";
 import { IPhotosPostFormData } from "../../../container";
 type IPhotosPostContentsControllerProps = {};
@@ -28,7 +27,7 @@ export const PhotosPostContentsController: FC<
           <>
             <TextArea
               value={value}
-              placeholder="Content"
+              placeholder="Content should not exceed 500 characters"
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                 if (e.target.value.trim().length > 500) {
                   return;
@@ -54,6 +53,7 @@ const TextArea = styled.textarea`
   border-radius: 0.375rem;
   color: black;
   height: 400px;
+  font-family: "IBM Plex Sans KR", sans-serif;
 `;
 
 const ErrorMessage = styled.p`

@@ -6,21 +6,30 @@ import {
 } from "../views";
 import { Layout } from "../../../styles";
 import { useParams } from "react-router-dom";
+import { useDetailData } from "./hooks";
 import { useQuery } from "react-query";
 
 type IPhotosDetailContainerProps = {};
 
 export const PhotosDetailContainer: FC<IPhotosDetailContainerProps> = ({}) => {
   const { id } = useParams();
+  const { getDetailData } = useDetailData(id);
 
-  const { data, error, isLoading } = useQuery(["photosDetail", id], () =>
-    fetchDetailData(id).getPhotosDetail()
-  );
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["photosDetail"],
+    queryFn: getDetailData,
+  });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  console.log(data, isLoading, error);
 
-  console.log(data);
+  // const { data, error, isLoading } = useQuery(["photosDetail", id], () =>
+  //   fetchDetailData(id).getPhotosDetail()
+  // );
+
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>Error</div>;
+
+  // console.log(data);
 
   return (
     <Layout>

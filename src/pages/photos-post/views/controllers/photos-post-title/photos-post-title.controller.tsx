@@ -19,7 +19,7 @@ export const PhotosPostInputController: FC<
       rules={{
         required: "Title is required",
         validate: (value) =>
-          value.trim().length < 11 || "Input should not exceed 11 characters",
+          value.trim().length < 11 || "Title should not exceed 11 characters",
       }}
       render={({ field: { value, onChange } }) => {
         return (
@@ -27,6 +27,7 @@ export const PhotosPostInputController: FC<
             <Input
               type="text"
               value={value}
+              placeholder="Title"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 if (e.target.value.trim().length > 11) {
                   return;
@@ -51,6 +52,7 @@ const Input = styled.input`
   border-radius: 0.375rem;
   color: black;
   width: 100%;
+  font-family: "IBM Plex Sans KR", sans-serif;
 `;
 
 const ErrorMessage = styled.p`

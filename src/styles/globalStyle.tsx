@@ -29,6 +29,9 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 1.2rem;
         background-color: #ffffff;
 
+        font-family: 'IBM Plex Sans KR', sans-serif;
+        
+
     }
 
     #root {

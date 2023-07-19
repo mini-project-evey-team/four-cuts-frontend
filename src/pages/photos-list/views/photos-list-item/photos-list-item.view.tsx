@@ -29,7 +29,7 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({ items }) => {
               const title = item.title;
               return (
                 <Link
-                  to={`/list/${id}/detail`}
+                  to={`/list/detail/${id}/`}
                   key={id}
                   style={{ textDecoration: "none" }}
                 >

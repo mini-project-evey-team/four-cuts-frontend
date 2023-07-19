@@ -32,7 +32,6 @@ export const usePhotosPostSubmit = () => {
     async (data) => {
       console.log(data);
       if (data.imageFiles.some((image) => !image)) {
-        alert("모든 이미지 필드에 파일을 업로드해주세요.");
         return;
       }
 
