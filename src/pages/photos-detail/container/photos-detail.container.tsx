@@ -7,7 +7,7 @@ import {
 import { Layout } from "../../../styles";
 import { useParams } from "react-router-dom";
 import { useDetailData } from "./hooks";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 type IPhotosDetailContainerProps = {};
 
@@ -20,17 +20,16 @@ export const PhotosDetailContainer: FC<IPhotosDetailContainerProps> = ({}) => {
     queryFn: getDetailData,
   });
 
-  console.log(data, isLoading, error);
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
 
-  // const { data, error, isLoading } = useQuery(["photosDetail", id], () =>
-  //   fetchDetailData(id).getPhotosDetail()
-  // );
+  if (error) {
+    console.log(error);
+    return;
+  }
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error</div>;
-
-  // console.log(data);
-
+  const { title, content, photoUrl } = data;
   return (
     <Layout>
       <PhotosDetailHeaderView />
@@ -43,10 +42,10 @@ export const PhotosDetailContainer: FC<IPhotosDetailContainerProps> = ({}) => {
         }}
       >
         <div style={{ flex: 1, paddingTop: 30 }}>
-          <PhotosDetailImageView />
+          <PhotosDetailImageView title={title} photoUrl={photoUrl} />
         </div>
         <div style={{ flex: 1, paddingTop: 40 }}>
-          <PhotosDetailContentView />
+          <PhotosDetailContentView title={title} content={content} />
         </div>
       </div>
     </Layout>

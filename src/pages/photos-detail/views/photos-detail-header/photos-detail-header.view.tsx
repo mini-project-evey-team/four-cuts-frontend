@@ -10,9 +10,9 @@ export const PhotosDetailHeaderView: FC<
 > = ({}) => {
   return (
     <HeaderWrapper>
-      <Link to="/">
+      <Link to="/list">
         <Button attribute="filled" size="medium">
-          HOME
+          Back
         </Button>
       </Link>
     </HeaderWrapper>

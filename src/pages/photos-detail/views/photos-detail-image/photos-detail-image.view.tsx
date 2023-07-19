@@ -1,53 +1,16 @@
 import { FC } from "react";
-import { HAPPYCAT_URL } from "../../../../components/happy-cat";
 import { ImageContentsComponent } from "../../../../components";
 
-type IPhotosDetailImageViewProps = {};
+type IPhotosDetailImageViewProps = {
+  title: string;
+  photoUrl: string[];
+};
 
-export const PhotosDetailImageView: FC<IPhotosDetailImageViewProps> = ({}) => {
-  const data = [
-    {
-      id: "1",
-      title: "dd",
-      contents: "asd",
-      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-    },
-    {
-      id: "2",
-      title: "dd",
-      contents: "asd",
-      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-    },
-    {
-      id: "3",
-      title: "dd",
-      contents: "asd",
-      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-    },
-    {
-      id: "4",
-      title: "dd",
-      contents: "asd",
-      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-    },
-    {
-      id: "5",
-      title: "dd",
-      contents: "asd",
-      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-    },
-    {
-      id: "6",
-      title: "dd",
-      contents: "asd",
-      imageUrl: [HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL, HAPPYCAT_URL],
-    },
-  ];
+export const PhotosDetailImageView: FC<IPhotosDetailImageViewProps> = ({
+  title,
+  photoUrl,
+}) => {
   return (
-    <ImageContentsComponent
-      imageUrls={data[0].imageUrl}
-      title=""
-      width="400px"
-    />
+    <ImageContentsComponent imageUrls={photoUrl} title={title} width="400px" />
   );
 };
