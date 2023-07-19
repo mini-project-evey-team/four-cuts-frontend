@@ -5,6 +5,7 @@ import {
   PhotosMainPage,
   PhotosPostPage,
   SignInPage,
+  SignUpPage,
 } from "../pages";
 
 export const RouterProvider = () => {
@@ -16,7 +17,8 @@ export const RouterProvider = () => {
         <Route path="/post" element={<PhotosPostPage />} />
         <Route path="/list/detail/:id/" element={<PhotosDetailPage />} />
 
-        <Route path="/login" element={<SignInPage />}></Route>
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </BrowserRouter>
   );

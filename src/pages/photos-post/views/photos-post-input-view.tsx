@@ -9,9 +9,6 @@ import {
 import { Button } from "../../../components";
 
 export const PhotosPostInputView = () => {
-  // const { watch } = useFormContext<IPhotosPostFormData>();
-  // console.log(watch());
-
   const { submit } = usePhotosPostSubmit();
 
   return (

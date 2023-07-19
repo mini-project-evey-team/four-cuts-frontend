@@ -25,7 +25,6 @@ export const PhotosDetailContainer: FC<IPhotosDetailContainerProps> = ({}) => {
   }
 
   if (error) {
-    console.log(error);
     return;
   }
 

@@ -5,10 +5,17 @@ import {
   PhotosMainTitleView,
 } from "../views";
 import { Layout } from "../../../styles";
+import { usePhotosMainData } from "./hooks";
 
 type IPhotosMainContainerProps = {};
 
 export const PhotosMainContainer: FC<IPhotosMainContainerProps> = ({}) => {
+  const { photoUrls, loading } = usePhotosMainData();
+
+  if (loading) {
+    return <div>Loading</div>;
+  }
+
   return (
     <Layout>
       <PhotosMainHeaderView />
@@ -20,7 +27,7 @@ export const PhotosMainContainer: FC<IPhotosMainContainerProps> = ({}) => {
         }}
       >
         <PhotosMainTitleView />
-        <PhotosMainSlideView />
+        <PhotosMainSlideView photoUrls={photoUrls} />
       </div>
     </Layout>
   );

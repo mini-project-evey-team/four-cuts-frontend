@@ -98,6 +98,8 @@ export const PhotosPostImageInputComponent: FC<
               const currentimageFiles = [...imageFiles];
               currentimageFiles[index] = compressedFile;
               onChangeImageFiles([...currentimageFiles]);
+
+              e.target.value = "";
             }
           }
         };

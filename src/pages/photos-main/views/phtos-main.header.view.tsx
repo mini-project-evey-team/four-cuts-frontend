@@ -7,7 +7,7 @@ type IPhtosMainHeaderViewProps = {};
 export const PhotosMainHeaderView: FC<IPhtosMainHeaderViewProps> = ({}) => {
   return (
     <HeaderWrapper>
-      <Link to="/login">
+      <Link to="/signin">
         <Button attribute="empty" size="small">
           Login
         </Button>

@@ -40,6 +40,5 @@ export const GlobalStyle = createGlobalStyle`
         height: 100%;
         overflow-y: auto;
     }
-
  
 `;

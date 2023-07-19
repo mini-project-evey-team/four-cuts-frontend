@@ -1,4 +1,4 @@
-import { FC, Key, Suspense, useEffect } from "react";
+import { FC, Suspense } from "react";
 import { PhotosListHeaderView, PhotosListItemView } from "../views";
 import { Layout } from "../../../styles";
 import { useInfinityQueryData } from "./hooks";
@@ -22,8 +22,6 @@ export const PhotosListContainer: FC<IPhotosListContainerProps> = ({}) => {
 
   const hasPrevPageData = pageIndex > 1;
   const hasNextPageData = pageIndex < pages[0].total_page;
-
-  // console.log(currentPageData, hasPrevPage, hasNextPage);
 
   const items = currentPageData.items;
 

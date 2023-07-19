@@ -21,16 +21,30 @@ interface IPhotosPostFormData {
 
 export const usePhotosPostSubmit = () => {
   const navigate = useNavigate();
-  const { handleSubmit } = useFormContext<IPhotosPostFormData>();
+  const { handleSubmit, watch } = useFormContext<IPhotosPostFormData>();
 
-  const onFormError: SubmitErrorHandler<IPhotosPostFormData> =
-    useCallback(() => {
-      alert("The fields should not be empty.");
-    }, []);
+  const onFormError: SubmitErrorHandler<IPhotosPostFormData> = useCallback(
+    async (error) => {
+      const { title, content } = error;
+      const imageFiles = watch("imageFiles");
+
+      if (title) {
+        alert("제목을 적어주세요");
+      }
+
+      if (content) {
+        alert("내용을 적어주세요");
+      }
+
+      if (imageFiles.some((e) => !e)) {
+        alert("사진을 4개 넣어주세요");
+      }
+    },
+    []
+  );
 
   const onFormSubmit: SubmitHandler<IPhotosPostFormData> = useCallback(
     async (data) => {
-      console.log(data);
       if (data.imageFiles.some((image) => !image)) {
         return;
       }
@@ -65,8 +79,6 @@ export const usePhotosPostSubmit = () => {
           data: formData,
           headers: { "Content-Type": "multipart/form-data" },
         });
-
-        console.log(res);
 
         if (res.status === 200) {
           alert("사진 업로드에 성공하였습니다!");

@@ -33,6 +33,12 @@ export const PhotosPostAllPhotosController: FC<
           const compressedFiles: File[] = [];
 
           if (files) {
+            if (files.length !== 4) {
+              alert("4개의 이미지를 넣어주세요");
+              e.target.value = "";
+
+              return;
+            }
             const tempImages: (string | ArrayBuffer | null)[] = [];
 
             // for frontend ui
@@ -56,6 +62,8 @@ export const PhotosPostAllPhotosController: FC<
             }
             onChangeImageFiles(compressedFiles);
           }
+
+          e.target.value = "";
         };
         return (
           <ContainerDiv>
