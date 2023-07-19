@@ -23,12 +23,10 @@ export const usePhotosPostSubmit = () => {
   const navigate = useNavigate();
   const { handleSubmit } = useFormContext<IPhotosPostFormData>();
 
-  const onFormError: SubmitErrorHandler<IPhotosPostFormData> = useCallback(
-    (errors) => {
-      alert(JSON.stringify(errors));
-    },
-    []
-  );
+  const onFormError: SubmitErrorHandler<IPhotosPostFormData> =
+    useCallback(() => {
+      alert("The fields should not be empty.");
+    }, []);
 
   const onFormSubmit: SubmitHandler<IPhotosPostFormData> = useCallback(
     async (data) => {
@@ -76,6 +74,7 @@ export const usePhotosPostSubmit = () => {
           navigate("/list");
         }
       } catch (error) {
+        alert("사진 업로드에 실패하였습니다!");
         console.error(error);
       }
     },

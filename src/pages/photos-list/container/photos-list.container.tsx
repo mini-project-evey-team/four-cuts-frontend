@@ -4,45 +4,67 @@ import { Layout } from "../../../styles";
 import { useInfinityQueryData } from "./hooks";
 import { useRecoilValue } from "recoil";
 import { $pageIndex } from "../photos-list.state";
+import { ArrowButtonComponent } from "../../../components";
 
 type IPhotosListContainerProps = {};
 
 export const PhotosListContainer: FC<IPhotosListContainerProps> = ({}) => {
-  const {
-    pages,
-    isFetching,
-    fetchNextPagePhotos,
-    fetchPrevPagePhotos,
-    hasNextPage,
-    hasPreviousPage,
-  } = useInfinityQueryData();
-
+  const { pages, isFetching, fetchNextPagePhotos, fetchPrevPagePhotos } =
+    useInfinityQueryData();
   const pageIndex = useRecoilValue($pageIndex);
 
   if (isFetching || !pages) {
     return <div>Loading</div>;
   }
 
-  console.log("1233", pages);
   const currentPageData = pages[pageIndex - 1];
-  console.log("456", currentPageData);
+
+  const hasPrevPageData = pageIndex > 1;
+  const hasNextPageData = pageIndex < pages[0].total_page;
+
+  // console.log(currentPageData, hasPrevPage, hasNextPage);
+
+  const items = currentPageData.items;
 
   return (
     <Layout>
       <PhotosListHeaderView />
       <Suspense fallback={<div>Loading...</div>}>
-        {currentPageData.items.map((item: any, index: any) => {
-          return (
-            <PhotosListItemView
-              key={index}
-              item={item}
-              fetchPrevPagePhotos={fetchPrevPagePhotos}
-              fetchNextPagePhotos={fetchNextPagePhotos}
-              hasNextPage={hasNextPage}
-              hasPreviousPage={hasPreviousPage}
-            />
-          );
-        })}
+        <div style={{ display: "flex", flex: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "200px",
+              height: "100%",
+            }}
+          >
+            {hasPrevPageData && (
+              <ArrowButtonComponent
+                direction="left"
+                onButtonClick={fetchPrevPagePhotos}
+              />
+            )}
+          </div>
+          <PhotosListItemView items={items} />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "200px",
+              height: "100%",
+            }}
+          >
+            {hasNextPageData && (
+              <ArrowButtonComponent
+                direction="right"
+                onButtonClick={fetchNextPagePhotos}
+              />
+            )}
+          </div>
+        </div>
       </Suspense>
     </Layout>
   );

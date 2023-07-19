@@ -7,51 +7,26 @@ import {
 import { Link } from "react-router-dom";
 
 type IPhotosListItemViewProps = {
-  item: {
+  items: {
     content: string;
     createdAt: string;
     id: number;
     photoUrl: string[];
     title: string;
     username: string;
-  };
-  fetchPrevPagePhotos: () => void;
-  fetchNextPagePhotos: () => void;
-  hasNextPage?: boolean;
-  hasPreviousPage?: boolean;
+  }[];
 };
 
-export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({
-  item,
-  fetchPrevPagePhotos,
-  fetchNextPagePhotos,
-  hasNextPage,
-  hasPreviousPage,
-}) => {
-  const { id, title, photoUrl } = item;
-
+export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({ items }) => {
   return (
     <div style={{ display: "flex", flex: 1, alignItems: "center" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "200px",
-          height: "100%",
-        }}
-      >
-        {hasPreviousPage && (
-          <ArrowButtonComponent
-            direction="left"
-            onButtonClick={fetchPrevPagePhotos}
-          />
-        )}
-      </div>
       <div style={{ flex: 1 }}>
         <CardGrid>
-          {photoUrl.map((url) => {
-            if (url) {
+          {items.map((item) => {
+            if (item) {
+              const photoUrl = item.photoUrl;
+              const id = item.id;
+              const title = item.title;
               return (
                 <Link
                   to={`/list/${id}/detail`}
@@ -68,22 +43,6 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({
             }
           })}
         </CardGrid>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "200px",
-          height: "100%",
-        }}
-      >
-        {hasNextPage && (
-          <ArrowButtonComponent
-            direction="right"
-            onButtonClick={fetchNextPagePhotos}
-          />
-        )}
       </div>
     </div>
   );

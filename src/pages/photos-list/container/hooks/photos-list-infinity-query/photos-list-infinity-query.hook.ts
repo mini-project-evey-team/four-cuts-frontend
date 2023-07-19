@@ -16,8 +16,6 @@ export const useInfinityQueryData = () => {
     isFetchingNextPage,
     isLoading,
     isError,
-    hasPreviousPage,
-    hasNextPage,
   } = useInfiniteQuery(["photosList"], getPhotosList, {
     getNextPageParam: (lastPage) => {
       if (lastPage.current_page >= lastPage.total_page) {
@@ -56,7 +54,5 @@ export const useInfinityQueryData = () => {
     fetchPrevPagePhotos,
     fetchNextPagePhotos,
     isFetching,
-    hasNextPage,
-    hasPreviousPage,
   };
 };
