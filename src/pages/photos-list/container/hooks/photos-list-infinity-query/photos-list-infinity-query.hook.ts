@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchData } from "../../../api";
 import { useRecoilState } from "recoil";
-import { $pageIndex } from "../../../photos-list.state";
+import { $pageIndex } from "../../../../photos-page-index.state";
 
 export const useInfinityQueryData = () => {
   const { getPhotosList } = fetchData();

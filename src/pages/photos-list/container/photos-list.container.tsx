@@ -3,8 +3,9 @@ import { PhotosListHeaderView, PhotosListItemView } from "../views";
 import { Layout } from "../../../styles";
 import { useInfinityQueryData } from "./hooks";
 import { useRecoilValue } from "recoil";
-import { $pageIndex } from "../photos-list.state";
+
 import { ArrowButtonComponent } from "../../../components";
+import { $pageIndex } from "../../photos-page-index.state";
 
 type IPhotosListContainerProps = {};
 
