@@ -4,6 +4,8 @@ import {
   PhotosListPage,
   PhotosMainPage,
   PhotosPostPage,
+  SignInPage,
+  SignUpPage,
 } from "../pages";
 
 export const RouterProvider = () => {
@@ -13,7 +15,10 @@ export const RouterProvider = () => {
         <Route path="/" element={<PhotosMainPage />} />
         <Route path="/list" element={<PhotosListPage />} />
         <Route path="/post" element={<PhotosPostPage />} />
-        <Route path="/list/:id/detail" element={<PhotosDetailPage />} />
+        <Route path="/list/detail/:id/" element={<PhotosDetailPage />} />
+
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -7,6 +7,7 @@ import {
 import { Layout } from "../../../styles";
 import { FormProvider } from "react-hook-form";
 import { usePostForm } from "./hooks";
+import styled from "styled-components";
 type IPhotosPostContainerProps = {};
 
 export const PhotosPostContainer: FC<IPhotosPostContainerProps> = ({}) => {
@@ -17,23 +18,29 @@ export const PhotosPostContainer: FC<IPhotosPostContainerProps> = ({}) => {
     <FormProvider {...form}>
       <Layout>
         <PhotosPostHeaderView />
-        <div
-          style={{
-            display: "flex",
-            height: "-webkit-fill-available",
-            padding: "0px 180px 0px 180px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ flex: 1 }}>
+        <ContainerDiv>
+          <ChildDiv>
             <PhotosPostAddPhotoView />
-          </div>
-          <div style={{ flex: 1 }}>
+          </ChildDiv>
+          <ChildDiv>
             <PhotosPostInputView />
-          </div>
-        </div>
+          </ChildDiv>
+        </ContainerDiv>
       </Layout>
     </FormProvider>
   );
 };
+
+const ContainerDiv = styled.div`
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 0px 180px 0px 180px;
+  justify-content: center;
+  padding-top: 20px;
+`;
+
+const ChildDiv = styled.div`
+  flex: 1;
+  display: flex;
+`;

@@ -21,7 +21,11 @@ export const Button: FC<IButtonProps> = ({
   );
 };
 
-const StyledButton = styled.button<{ attribute: string; size: string }>`
+const StyledButton = styled.button<{
+  attribute: string;
+  size: string;
+  flex?: boolean;
+}>`
   cursor: pointer;
   border-radius: 20px;
   padding: 10px;
@@ -54,8 +58,8 @@ const StyledButton = styled.button<{ attribute: string; size: string }>`
     switch (props.size) {
       case "large":
         return css`
-          width: 310px;
-          height: 73px;
+          width: 300px;
+          height: 48px;
           font-weight: 600;
         `;
       case "medium":

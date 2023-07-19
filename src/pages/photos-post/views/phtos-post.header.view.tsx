@@ -1,17 +1,17 @@
 import { FC } from "react";
 import { Button } from "../../../components";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 type IPhotosPostHeaderViewProps = {};
 
 export const PhotosPostHeaderView: FC<IPhotosPostHeaderViewProps> = ({}) => {
+  const navigate = useNavigate();
+
   return (
     <HeaderWrapper>
-      <Link to="/">
-        <Button attribute="filled" size="medium">
-          HOME
-        </Button>
-      </Link>
+      <Button attribute="empty" size="medium" onClick={() => navigate(-1)}>
+        Back
+      </Button>
     </HeaderWrapper>
   );
 };
