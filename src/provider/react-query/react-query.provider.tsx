@@ -1,5 +1,5 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createContext, FC, ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export interface IReactQueryContext {}
 

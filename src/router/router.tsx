@@ -7,7 +7,7 @@ import {
   SignInPage,
 } from "../pages";
 
-export const RouterProvider = () => {
+export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>

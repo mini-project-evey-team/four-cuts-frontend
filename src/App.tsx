@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { ReactQueryProvider, RecoilProvider } from "./provider";
-import { RouterProvider } from "./router";
+import { Router } from "./router";
 
 export const App: FC = () => {
   return (
     <RecoilProvider>
       <ReactQueryProvider>
-        <RouterProvider />
+        <Router />
       </ReactQueryProvider>
     </RecoilProvider>
   );

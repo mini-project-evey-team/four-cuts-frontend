@@ -20,16 +20,11 @@ export const PhotosDetailContainer: FC<IPhotosDetailContainerProps> = ({}) => {
     queryFn: getDetailData,
   });
 
+  if (isLoading || error) {
+    return <div>Loading</div>;
+  }
+
   console.log(data, isLoading, error);
-
-  // const { data, error, isLoading } = useQuery(["photosDetail", id], () =>
-  //   fetchDetailData(id).getPhotosDetail()
-  // );
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error</div>;
-
-  // console.log(data);
 
   return (
     <Layout>
