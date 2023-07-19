@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { Button } from "../../../components";
+import { Button } from "../../../../components";
 import { Link } from "react-router-dom";
 
 type IPhotosListHeaderViewProps = {};

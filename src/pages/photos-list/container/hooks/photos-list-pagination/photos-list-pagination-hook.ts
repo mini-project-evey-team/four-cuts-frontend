@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { $fetchData, $pageIndex } from "../../photos-list.state";
+import { $fetchData, $pageIndex } from "../../../photos-list.state";
 
-export const useFetch = () => {
+export const usePagination = () => {
   const currentPageData = useRecoilValue($fetchData);
 
   const [pageIndex, setPageIndex] = useRecoilState($pageIndex);

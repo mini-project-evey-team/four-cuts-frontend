@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
-  LoginPage,
   PhotosDetailPage,
   PhotosListPage,
   PhotosMainPage,
   PhotosPostPage,
+  SignInPage,
 } from "../pages";
 
 export const RouterProvider = () => {
@@ -16,7 +16,7 @@ export const RouterProvider = () => {
         <Route path="/post" element={<PhotosPostPage />} />
         <Route path="/list/:id/detail" element={<PhotosDetailPage />} />
 
-        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/login" element={<SignInPage />}></Route>
       </Routes>
     </BrowserRouter>
   );

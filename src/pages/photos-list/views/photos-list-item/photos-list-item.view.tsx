@@ -3,19 +3,32 @@ import styled from "styled-components";
 import {
   ArrowButtonComponent,
   ImageContentsComponent,
-} from "../../../components";
+} from "../../../../components";
 import { Link } from "react-router-dom";
-import { useFetch } from "../container/hooks";
 
-type IPhotosListItemViewProps = {};
+type IPhotosListItemViewProps = {
+  item: {
+    content: string;
+    createdAt: string;
+    id: number;
+    photoUrl: string[];
+    title: string;
+    username: string;
+  };
+  fetchPrevPagePhotos: () => void;
+  fetchNextPagePhotos: () => void;
+  hasNextPage?: boolean;
+  hasPreviousPage?: boolean;
+};
 
-export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
-  const { currentPageData, goPreviousPage, goNextPage, pageIndex } = useFetch();
-
-  const cards = Array(6).fill(0);
-
-  const isLastPage = currentPageData.isLastPage;
-  const isFirstPage = pageIndex === 1;
+export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({
+  item,
+  fetchPrevPagePhotos,
+  fetchNextPagePhotos,
+  hasNextPage,
+  hasPreviousPage,
+}) => {
+  const { id, title, photoUrl } = item;
 
   return (
     <div style={{ display: "flex", flex: 1, alignItems: "center" }}>
@@ -28,31 +41,25 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
           height: "100%",
         }}
       >
-        {!isFirstPage && (
+        {hasPreviousPage && (
           <ArrowButtonComponent
             direction="left"
-            onButtonClick={goPreviousPage}
+            onButtonClick={fetchPrevPagePhotos}
           />
         )}
       </div>
       <div style={{ flex: 1 }}>
         <CardGrid>
-          {cards.map((_, i) => {
-            const sixPhotosArray = currentPageData.items;
-
-            if (sixPhotosArray?.[i]) {
-              const fourPhotosArray = sixPhotosArray[i];
-              const imageUrlsArray = fourPhotosArray.imageUrl;
-              const title = fourPhotosArray.title;
-
+          {photoUrl.map((url) => {
+            if (url) {
               return (
                 <Link
-                  to={`/list/${sixPhotosArray[i].id}/detail`}
-                  key={i}
+                  to={`/list/${id}/detail`}
+                  key={id}
                   style={{ textDecoration: "none" }}
                 >
                   <ImageContentsComponent
-                    imageUrls={imageUrlsArray}
+                    imageUrls={photoUrl}
                     title={title}
                     width="200px"
                   />
@@ -71,8 +78,11 @@ export const PhotosListItemView: FC<IPhotosListItemViewProps> = ({}) => {
           height: "100%",
         }}
       >
-        {!isLastPage && (
-          <ArrowButtonComponent direction="right" onButtonClick={goNextPage} />
+        {hasNextPage && (
+          <ArrowButtonComponent
+            direction="right"
+            onButtonClick={fetchNextPagePhotos}
+          />
         )}
       </div>
     </div>

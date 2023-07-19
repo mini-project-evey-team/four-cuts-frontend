@@ -1,2 +1,2 @@
-export * from "./photos-list-header.view";
-export * from "./photos-list-item.view";
+export * from "./photos-list-header";
+export * from "./photos-list-item";

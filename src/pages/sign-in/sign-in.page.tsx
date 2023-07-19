@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { LoginFormContainer } from "./container";
 import { Layout } from "../../styles";
+import { SignInContainer } from "./container";
 
 type ILoginPageProps = {};
 
-export const LoginPage: FC<ILoginPageProps> = ({}) => {
+export const SignInPage: FC<ILoginPageProps> = ({}) => {
   return (
     <Layout>
-      <LoginFormContainer />
+      <SignInContainer />
     </Layout>
   );
 };
