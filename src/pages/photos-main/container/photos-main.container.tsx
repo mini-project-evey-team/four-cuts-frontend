@@ -13,7 +13,7 @@ export const PhotosMainContainer: FC<IPhotosMainContainerProps> = ({}) => {
   const { photoUrls, loading } = usePhotosMainData();
 
   if (loading) {
-    return <div>Loading</div>;
+    return <div></div>;
   }
 
   return (

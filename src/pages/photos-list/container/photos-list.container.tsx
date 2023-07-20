@@ -15,7 +15,7 @@ export const PhotosListContainer: FC<IPhotosListContainerProps> = ({}) => {
   const pageIndex = useRecoilValue($pageIndex);
 
   if (isFetching || !pages) {
-    return <div>Loading</div>;
+    return <div></div>;
   }
 
   const currentPageData = pages[pageIndex - 1];
@@ -28,7 +28,7 @@ export const PhotosListContainer: FC<IPhotosListContainerProps> = ({}) => {
   return (
     <Layout>
       <PhotosListHeaderView />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <div style={{ display: "flex", flex: 1 }}>
           <div
             style={{
