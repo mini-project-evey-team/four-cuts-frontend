@@ -10,9 +10,5 @@ export const PhotosListPage: FC<IPhotosListPageProps> = ({}) => {
     getPhotosList({ pageParam: 1 });
   }, []);
 
-  return (
-    <>
-      <PhotosListContainer />
-    </>
-  );
+  return <PhotosListContainer />;
 };

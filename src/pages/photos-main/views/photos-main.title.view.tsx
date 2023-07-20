@@ -10,8 +10,8 @@ export const PhotosMainTitleView: FC<IPhotosMainTitleViewProps> = ({}) => {
     <Container>
       <InnerContainer>
         <Title>
-          만들어요
-          <br /> 인생네컷!
+          모여봐요!
+          <br /> 인생네컷
         </Title>
         <ButtonGroup>
           <Link to="/post">
